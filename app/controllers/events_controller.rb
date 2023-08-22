@@ -1,3 +1,3 @@
-class EventsController < ActionController::Base
+class EventsController < ApplicationController
   def index; end
 end
