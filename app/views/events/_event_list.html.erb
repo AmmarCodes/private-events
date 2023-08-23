@@ -1,0 +1,9 @@
+<label class="list-group-item d-flex gap-3">
+  <span class="pt-1">
+    <strong><%= link_to event.title, event %></strong>
+    <small class="d-block text-body-secondary">
+      <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
+      <%= event.date %>
+    </small>
+  </span>
+</label>

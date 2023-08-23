@@ -1,7 +1,7 @@
 <h2>User's events</h2>
 
-<ul>
+<div class="list-group mb-3">
   <% @user.events.each do |event| %>
-    <li><%= event.date %></li>
+    <%= render 'events/event_list', event: event %>
   <% end %>
-<ul>
+</div>
