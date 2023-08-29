@@ -1,7 +1,22 @@
-<h2>User's events</h2>
+<h1><%= @user.name %>'s profile</h1>
 
-<div class="list-group mb-3">
-  <% @user.events.each do |event| %>
-    <%= render 'events/event_list', event: event %>
-  <% end %>
-</div>
+<% if @user.events.any? %>
+  <h3>Attending the following events</h3>
+
+  <div class="list-group mb-3">
+    <% @user.events.each do |event| %>
+      <%= render 'events/event_list', event: event %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @user.attended_events.any? %>
+  <h3>Attending the following events</h3>
+
+  <div class="list-group mb-3">
+    <% @user.attended_events.each do |event| %>
+      <%= render 'events/event_list', event: event %>
+    <% end %>
+  </div>
+
+<% end %>
