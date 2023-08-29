@@ -6,11 +6,13 @@
       <%= event.date %>
     </small>
   </span>
-  <div class="align-self-center">
+  <span class="align-self-center">
     <% if current_user && current_user.attended_events.include?(event) %>
-      You're going!
+      <% if event.date >= DateTime.current.to_date %>
+        You're going!
+      <% end %>
     <% else %>
       <%= button_to 'Attend', attending_url(event.id), method: :post, class: 'btn btn-sm btn-outline-primary' %>
     <% end %>
-  </div>
+  </span>
 </label>

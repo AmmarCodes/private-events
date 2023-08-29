@@ -11,12 +11,19 @@
 <% end %>
 
 <% if @user.attended_events.any? %>
-  <h3>Attending the following events</h3>
+  <h3>Attending the upcoming events</h3>
 
   <div class="list-group mb-3">
-    <% @user.attended_events.each do |event| %>
+    <% @user.attended_events.where("date >= ?", DateTime.current.to_date).each do |event| %>
       <%= render 'events/event_list', event: event %>
     <% end %>
   </div>
 
+  <h3>Past events</h3>
+
+  <div class="list-group mb-3">
+    <% @user.attended_events.where("date < ?", DateTime.current.to_date).each do |event| %>
+      <%= render 'events/event_list', event: event, hide_attend_button: true %>
+    <% end %>
+  </div>
 <% end %>
