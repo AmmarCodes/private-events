@@ -10,5 +10,21 @@
   <%= @event.date %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% if @event.attendees %>
+  <ul>
+    <% @event.attendees.each do |attendee|  %>
+      <li><%= attendee.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<% if @current_user_attending %>
+  <%= button_tag 'Attending', class: 'btn btn-outline-primary', disabled: true %>
+<% else %>
+  <%= button_to 'Attend', attending_url(@event.id), method: :post, class: 'btn btn-outline-primary' %>
+<% end %>
+
+<%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-link' %> |
+<%= link_to 'Back', events_path, class: 'btn btn-link' %>
+

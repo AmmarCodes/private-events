@@ -1,9 +1,16 @@
-<label class="list-group-item d-flex gap-3">
+<label class="list-group-item d-flex gap-3 justify-content-between">
   <span class="pt-1">
     <strong><%= link_to event.title, event %></strong>
     <small class="d-block text-body-secondary">
-      <svg class="bi me-1" width="1em" height="1em"><use xlink:href="#calendar-event"></use></svg>
+      <i class="bi bi-calendar"></i>
       <%= event.date %>
     </small>
   </span>
+  <div class="align-self-center">
+    <% if current_user && current_user.attended_events.include?(event) %>
+      You're going!
+    <% else %>
+      <%= button_to 'Attend', attending_url(event.id), method: :post, class: 'btn btn-sm btn-outline-primary' %>
+    <% end %>
+  </div>
 </label>
