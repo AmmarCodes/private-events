@@ -1,9 +1,21 @@
 <h1>Events</h1>
 
-<div class="list-group mb-3">
-  <% @events.each do |event| %>
-    <%= render 'event_list', event: event %>
-  <% end %>
-</div>
+<% if @upcoming_events.any? %>
+  <h2>Upcoming events</h2>
+  <div class="list-group mb-3">
+    <% @upcoming_events.each do |event| %>
+      <%= render 'event_list', event: event %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @past_events.any? %>
+  <h2>Past events</h2>
+  <div class="list-group mb-3">
+    <% @past_events.each do |event| %>
+      <%= render 'event_list', event: event %>
+    <% end %>
+  </div>
+<% end %>
 
 <%= link_to 'New Event', new_event_path %>
